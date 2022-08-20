@@ -82,6 +82,7 @@ app.get('/auth/google/callback',
     res.redirect('/home');
   });
 app.get('/home', (req, res) => {
+  if(req.isAuthenticated()){
   db.searchByHash({
     table: 'register',
     hashValues: [req.user.id],
@@ -134,6 +135,10 @@ app.get('/home', (req, res) => {
     .catch(err => {
       console.log(err);
     })
+  }
+  else{
+    res.redirect('/');
+  }
 })
 app.listen(process.env.PORT);
 app.post('/api/posts', function (request, response) {
