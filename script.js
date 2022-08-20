@@ -135,7 +135,7 @@ app.get('/home', (req, res) => {
       console.log(err);
     })
 })
-app.listen(3000);
+app.listen(process.env.PORT);
 app.post('/api/posts', function (request, response) {
   console.log("data received from client", request.body);
   if (request.body != "") {
