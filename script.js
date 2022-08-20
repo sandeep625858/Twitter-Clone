@@ -173,7 +173,7 @@ app.post('/like/:id', (req, res) => {
               db.query(`SELECT t.likesCount FROM twitter.tweets as t where t.id="${req.params.id}"`)
                 .then(data => {
                   console.log(data);
-                  const likeCount = data.data[0].likesCount + 1;
+                  var likeCount = data.data[0].likesCount + 1;
                   db.query(`UPDATE twitter.tweets SET likesCount=${likeCount} where id="${req.params.id}"`)
                     .then(results => {
                       res.redirect("/home");
@@ -196,7 +196,10 @@ app.post('/like/:id', (req, res) => {
               db.query(`SELECT t.likesCount FROM twitter.tweets as t where t.id="${req.params.id}"`)
                 .then(data => {
                   console.log(data);
-                  const likeCount = data.data[0].likesCount - 1;
+                  var likeCount = data.data[0].likesCount - 1;
+                  if(likeCount<0){
+                    likeCount=0;
+                  }
                   db.query(`UPDATE twitter.tweets SET likesCount=${likeCount} where id="${req.params.id}"`)
                     .then(results => {
                       res.redirect("/home");
@@ -227,7 +230,7 @@ app.post('/like/:id', (req, res) => {
             db.query(`SELECT t.likesCount FROM twitter.tweets as t where t.id="${req.params.id}"`)
               .then(data => {
                 console.log(data);
-                const likeCount = data.data[0].likesCount + 1;
+                var likeCount = data.data[0].likesCount + 1;
                 db.query(`UPDATE twitter.tweets SET likesCount=${likeCount} where id="${req.params.id}"`)
                   .then(results => {
                     res.redirect("/home");

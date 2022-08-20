@@ -91,7 +91,7 @@
     position: relative;
     top: -1.9rem;
     left: 2.5rem;
-    color:black;
+    color:#00acee;
   }
   .tweets h1 span{
     font-size: 0.8rem;
@@ -102,6 +102,7 @@
     float:right;
     position: relative;
     top:-4rem;
+    color:#00acee;
   }
   .tweet{
     border: 1px solid black;
@@ -197,4 +198,10 @@
   }
   .deletebtn form{
     border: none;
+  }
+  .fa-heart{
+    color:red;
+  }
+  .fa-message{
+    color:#00acee;
   }
