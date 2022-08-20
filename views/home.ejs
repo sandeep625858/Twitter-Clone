@@ -55,7 +55,12 @@
                         <div class="icon">
                             <h3><i class="fa-regular fa-message"></i>300</h3>
                             <h3><i class="fa-solid fa-retweet"></i>0</h3>
-                            <h3 class="likebtn" data-tweetId="<%= tweet.id%>"><i class="fa-regular fa-heart"></i>&nbsp;<span><%=tweet.likes%></span></h3>
+                            <% if(tweet.liked==true){ %>
+                                <h3 class="likebtn" data-tweetId="<%= tweet.id%>"><i class="fa-solid fa-heart"></i>&nbsp;<span><%=tweet.likes%></span></h3>
+                                <% } 
+                                else{%>
+                                <h3 class="likebtn" data-tweetId="<%= tweet.id%>"><i class="fa-regular fa-heart"></i>&nbsp;<span><%=tweet.likes%></span></h3>
+                                <% } %>
                             <% if(user.id==tweet.userId){ %>
                                 <h3 class="deletebtn"><form action="/delete/<%= tweet.id%>" method="post"><button class="btn2"><i class="fa-regular fa-trash-can"></i></button></form></h3>
                              <% } %>

@@ -91,8 +91,9 @@ app.get('/home', (req, res) => {
     .then(result => {
       //console.log(result.data);
       const user = result.data[0];
-      db.query('Select t.userId as userId,t.id as id,t.__createdtime__ as tweetTime,r.name as name,r.photos as photo,t.tweet as tweet,t.likesCount as likes,r.username as userName from twitter.register as r Inner join twitter.tweets as t ON r.id=t.userId ORDER BY t.__createdtime__ DESC')
+      db.query(`Select t.userId as userId,t.id as id,t.__createdtime__ as tweetTime,r.name as name,r.photos as photo,t.tweet as tweet,t.likesCount as likes,r.username as userName,l.isLiked as liked from twitter.register as r Inner join twitter.tweets as t ON r.id=t.userId Left outer join twitter.likes as l ON l.tweetId=t.id and l.userId= "${req.user.id}" ORDER BY t.__createdtime__ DESC`)
         .then(results => {
+          console.log(results);
           const tweets = results.data;
           tweets.forEach((tweet) => {
             // console.log(tweet.tweetTime);
